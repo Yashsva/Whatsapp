@@ -58,7 +58,12 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
         if(ParseUser.getCurrentUser()!=null)
         {
-            ParseUser.logOut();
+//            ParseUser.logOut();
+
+            Toast.makeText(this,ParseUser.getCurrentUser().getUsername()+" Logged In",Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(SignUp.this,Home.class);
+            startActivity(intent);
+            finish();
         }
 
 

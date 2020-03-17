@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Home"></activity>
+        <activity android:name=".Chat"></activity>
+        <activity android:name=".Home" />
         <activity android:name=".Login" />
         <activity android:name=".SignUp">
             <intent-filter>
@@ -29,9 +30,6 @@
         <meta-data
             android:name="com.parse.CLIENT_KEY"
             android:value="@string/back4app_client_key" />
-
-
-
     </application>
 
 </manifest>

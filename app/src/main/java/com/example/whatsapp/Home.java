@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,7 +24,7 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ListView listView;
     private ArrayList<String> usersList;
@@ -46,6 +47,8 @@ public class Home extends AppCompatActivity {
 
         swipeRefreshLayout=findViewById(R.id.swipeContainer);
 
+        listView.setOnItemClickListener(this);
+
         try {
 
             ParseQuery<ParseUser> queryAllUsers=ParseUser.getQuery();
@@ -65,7 +68,10 @@ public class Home extends AppCompatActivity {
 
                             listView.setAdapter(arrayAdapter);
                             txtLoadingData.animate().alpha(0).setDuration(2000);
+
+                            listView.setAlpha(0);
                             listView.setVisibility(View.VISIBLE);
+                            listView.animate().alpha(1).setDuration(1000);
 
                         }
                         else
@@ -177,5 +183,15 @@ public class Home extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Intent intent=new Intent(this,Chat.class);
+        intent.putExtra("userReciever",usersList.get(position));
+        startActivity(intent);
+
     }
 }
